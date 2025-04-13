@@ -1,0 +1,13 @@
+@media screen and (width < 768px) {
+  .logoContainer {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+@media screen and (width > 768px) {
+  .eventName {
+    margin-left: 160px !important;
+    margin-top: 0px !important;
+  }
+}

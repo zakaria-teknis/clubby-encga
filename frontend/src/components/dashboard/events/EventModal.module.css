@@ -1,0 +1,6 @@
+@media screen and (width < 576px) {
+  .logoContainer {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
