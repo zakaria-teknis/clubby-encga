@@ -13,9 +13,11 @@ import { NavLink } from "react-router-dom";
 import clubbyLogo from "../assets/images/clubby-logo.png";
 import { BsThreeDots } from "react-icons/bs";
 import { useUserStore } from "../store/user";
+import { useTestAppStore } from "../store/public/testApp";
 
 export default function NavBarResponsive() {
   const { user, logoutUser } = useUserStore();
+  const { setShowCredentials } = useTestAppStore();
   const isLoading = useUserStore((state) => state.loadingStates["NavBar"]);
 
   const [show, setShow] = useState(false);
@@ -117,13 +119,27 @@ export default function NavBarResponsive() {
               ) : (
                 <>
                   <Col className="px-0">
-                    <Button
-                      as={NavLink}
-                      to="/request-signup"
-                      onClick={() => setShow(false)}
-                      className="fw-semibold py-1">
-                      Sign up
-                    </Button>
+                    <div className="d-flex flex-column gap-3">
+                      <Button
+                        as={NavLink}
+                        to="/login"
+                        onClick={() => {
+                          setShowCredentials(true);
+                          setShow(false);
+                        }}
+                        style={{ width: "fit-content" }}
+                        className="fw-semibold py-1">
+                        Test the app
+                      </Button>
+                      <Button
+                        as={NavLink}
+                        to="/request-signup"
+                        onClick={() => setShow(false)}
+                        style={{ width: "fit-content" }}
+                        className="fw-semibold py-1">
+                        Sign up
+                      </Button>
+                    </div>
                   </Col>
                   <Col>
                     <Button

@@ -303,15 +303,24 @@ userSchema.statics.login = async function (email, password) {
       element: ["email"],
       message: "No user with that email.",
     });
-  } else {
-    const approved = user.status === "approved" || user.status === "signed-up";
-    if (!approved) {
+  } else if (
+    user &&
+    (user.status === "pending" || user.status === "approved")
+  ) {
+    if (user.status === "pending") {
       validationErrors.push({
         element: ["email"],
         message: "Your request to sign up has not been approved yet.",
       });
     }
 
+    if (user.status === "approved") {
+      validationErrors.push({
+        element: ["email"],
+        message: "You haven't signed up yet.",
+      });
+    }
+  } else {
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       validationErrors.push({

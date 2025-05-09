@@ -2,21 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../../store/user";
+import { useTestAppStore } from "../../store/public/testApp";
 
 export default function LoginPage() {
   const { loginUser, validationErrors, setValidationErrors, setLoadingStates } =
     useUserStore();
   const isLoading = useUserStore((state) => state.loadingStates["LoginPage"]);
+  const { setShowCredentials, showCredentials } = useTestAppStore();
 
   useEffect(() => {
     return () => {
       setValidationErrors([]);
       setLoadingStates({});
+      setShowCredentials(false);
     };
   }, []);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(
+    showCredentials ? "zakariateknispro@gmail.com" : ""
+  );
+  const [password, setPassword] = useState(
+    showCredentials ? "@ABCabc123!@" : ""
+  );
 
   const validationErrorElement = (element) => {
     return (

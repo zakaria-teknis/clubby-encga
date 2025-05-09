@@ -5,9 +5,11 @@ import { useUserStore } from "../store/user";
 import clubbyLogo from "../assets/images/clubby-logo.png";
 import NavBarResponsive from "./NavBarResponsive";
 import DasboardNavBarResponsive from "./dashboard/DashboardNavBarResponsive";
+import { useTestAppStore } from "../store/public/testApp";
 
 export default function NavBar() {
   const { logoutUser, user } = useUserStore();
+  const { setShowCredentials } = useTestAppStore();
   const isLoading = useUserStore((state) => state.loadingStates["NavBar"]);
 
   const handleLogout = () => {
@@ -59,6 +61,13 @@ export default function NavBar() {
             </>
           ) : (
             <>
+              <Button
+                onClick={() => setShowCredentials(true)}
+                as={NavLink}
+                to="/login"
+                className="fw-semibold py-1">
+                Test the app
+              </Button>
               <Button
                 as={NavLink}
                 to="/request-signup"

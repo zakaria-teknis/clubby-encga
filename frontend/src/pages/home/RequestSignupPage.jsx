@@ -86,7 +86,7 @@ export default function RequestSignupPage() {
     <>
       <SuccessToast handleSuccessToastEnter={handleSuccessToastEnter} />
 
-      <Container fluid className="ps-0 py-5 px-4" style={{ minHeight: "calc(100vh - 72px)" }}>
+      <Container fluid className="py-5 px-4" style={{ minHeight: "calc(100vh - 72px)" }}>
         <Row>
           <Col
             lg={6}
