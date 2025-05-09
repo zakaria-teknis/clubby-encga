@@ -29,7 +29,7 @@ export const getClubPageInfo = async (req, res) => {
       return res.status(404).json({ message: "Page not found" });
     }
 
-    const boardMembers = await User.find({ club: clubName }).select(
+    const boardMembers = await User.find({ club: clubName, status: "signed-up" }).select(
       "-password -role -status -createdAt -updatedAt"
     );
     const boardPositionOrder = [
